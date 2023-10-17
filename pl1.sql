@@ -290,8 +290,8 @@ delimiter ;
 
 
 
-*/
-/*drop procedure if exists pro1;
+
+drop procedure if exists pro1;
 delimiter $
 create procedure pro1()
 BEGIN
@@ -308,7 +308,9 @@ BEGIN
 	call pro1();
 end  $
 delimiter ;
-*/
+
+
+
 drop trigger if exists tr1;
 delimiter $
 create trigger tr1 before insert on d for each ROW
@@ -317,7 +319,7 @@ BEGIN
 end  $
 delimiter ;
 
-/*
+
 drop trigger if exists tr2;
 delimiter $
 create trigger tr2 before delete on d for each ROW
