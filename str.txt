@@ -1,0 +1,36 @@
+drop procedure if exists str1;
+delimiter $
+create procedure str1(name varchar(30))
+
+BEGIN
+
+	declare x int;
+	declare y int;
+	set x:=0;
+	set y:=0;
+	
+	
+	set y:=length(name);
+	
+lb:LOOP
+	set x=x+1;
+	if x<=y THEN
+		select substr(name,x,1);
+	
+	ELSE
+	leave lb;
+	
+	end if;
+
+	end loop lb;
+	end $
+	delimiter ;
+
+db.orderDetails.insertMany([{_id:1, productName:'Butter', qty:2, rate:120},
+{_id:1, productName:'Cheese', qty:4, rate:200},
+{_id:1, productName:'PhoneCover', qty:3, rate:300},
+{_id:2, productName:'Bread', qty:5, rate:400},
+{_id:3, productName:'Pen', qty:1, rate:10},
+{_id:3, productName:'Books', qty:2, rate:140},
+{_id:4, productName:'Paneer', qty:1, rate:180},
+{_id:4, productName:'T-Shirt', qty:1, rate:400}]);

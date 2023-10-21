@@ -1,1 +1,1 @@
-drop trigger if exists tr1() 
+drop procedure of exists pro2;
