@@ -1,0 +1,369 @@
+PRN: 230945920067 
+SET 3:
+
+Section A:
+1)  select ename,isActive from emp where isActive=1;
++----------+----------+
+| ename    | isActive |
++----------+----------+
+| GITA     |        1 |
+| VRUSHALI |        1 |
+| SHARMIN  |        1 |
+| BANDISH  |        1 |
+| ALLEN    |        1 |
+| WARD     |        1 |
+| JONES    |        1 |
+| MARTIN   |        1 |
+| BLAKE    |        1 |
+| CLARK    |        1 |
+| SCOTT    |        1 |
+| KING     |        1 |
+| FRED     |        1 |
+| TURNER   |        1 |
+| ADAMS    |        1 |
+| JAMES    |        1 |
+| HOFFMAN  |        1 |
+| GRASS    |        1 |
+| ALEX     |        1 |
+| NATASHA  |        1 |
+| SANGITA  |        1 |
+| SUPRIYA  |        1 |
++----------+----------+
+
+
+
+2)select empno,ename,name from emp join emp_cards where empno=empid;
++-------+--------+-----------------+
+| empno | ename  | name            |
++-------+--------+-----------------+
+|  7839 | KING   | Aadhaar         |
+|  7839 | KING   | Driving Licence |
+|  7839 | KING   | PAN             |
+|  7839 | KING   | Voter ID        |
+|  7839 | KING   | Passport        |
+|  7839 | KING   | Debit           |
+|  7839 | KING   | Credit          |
+|  7698 | BLAKE  | Aadhaar         |
+|  7698 | BLAKE  | Driving Licence |
+|  7698 | BLAKE  | PAN             |
+|  7698 | BLAKE  | Voter ID        |
+|  7698 | BLAKE  | Debit           |
+|  7782 | CLARK  | Aadhaar         |
+|  7782 | CLARK  | Driving Licence |
+|  7782 | CLARK  | PAN             |
+|  7782 | CLARK  | Passport        |
+|  7782 | CLARK  | Debit           |
+|  7566 | JONES  | Aadhaar         |
+|  7566 | JONES  | Driving Licence |
+|  7566 | JONES  | PAN             |
+|  7566 | JONES  | Passport        |
+|  7566 | JONES  | Debit           |
+|  7566 | JONES  | Credit          |
+|  7654 | MARTIN | Aadhaar         |
+|  7654 | MARTIN | Driving Licence |
+|  7654 | MARTIN | PAN             |
+|  7654 | MARTIN | Voter ID        |
+|  7654 | MARTIN | Passport        |
+|  7654 | MARTIN | Debit           |
+|  7654 | MARTIN | Credit          |
+|  7499 | ALLEN  | PAN             |
+|  7499 | ALLEN  | Driving Licence |
+|  7844 | TURNER | Aadhaar         |
+|  7844 | TURNER | Driving Licence |
+|  7900 | JAMES  | Aadhaar         |
+|  7900 | JAMES  | Driving Licence |
+|  7900 | JAMES  | PAN             |
+|  7900 | JAMES  | Voter ID        |
+|  7521 | WARD   | Driving Licence |
+|  7521 | WARD   | PAN             |
+|  7521 | WARD   | Debit           |
+|  7521 | WARD   | Credit          |
+|  7902 | FORD   | Aadhaar         |
+|  7902 | FORD   | PAN             |
+|  7902 | FORD   | Passport        |
+|  7902 | FORD   | Voter ID        |
+|  7369 | SMITH  | Aadhaar         |
+|  7788 | SCOTT  | Aadhaar         |
+|  7788 | SCOTT  | Driving Licence |
+|  7788 | SCOTT  | PAN             |
+|  7876 | ADAMS  | Aadhaar         |
+|  7876 | ADAMS  | Driving Licence |
+|  7876 | ADAMS  | PAN             |
+|  7876 | ADAMS  | Voter ID        |
++-------+--------+-----------------+
+
+
+3)select ename,sal,comm from emp where empno not in(select empno from emp where comm>=0 and sal<=3000);
++----------+------+------+
+| ename    | sal  | comm |
++----------+------+------+
+| GITA     | 1750 | NULL |
+| VRUSHALI | 1750 | NULL |
+| SHARMIN  | 1750 | NULL |
+| BANDISH  | 1750 | NULL |
+| SMITH    |  800 | NULL |
+| AARAV    | 3350 | NULL |
+| THOMAS   | 1750 | NULL |
+| JONES    | 2975 | NULL |
+| BLAKE    | 2850 | NULL |
+| CLARK    | 2450 | NULL |
+| SCOTT    | 3000 | NULL |
+| KING     | 5000 | NULL |
+| FRED     | 5000 | NULL |
+| ADAMS    | 1100 | NULL |
+| JAMES    |  950 | NULL |
+| FORD     | 3000 | NULL |
+| HOFFMAN  | 4150 | NULL |
+| MILLER   | 1300 | NULL |
+| NATASHA  | 1750 | NULL |
+| SANGITA  | 1750 | NULL |
+| SUPRIYA  | 1750 | NULL |
++----------+------+------+
+
+
+
+
+4)select job,deptno,count(ename) from emp group by job,deptno order by count(ename) limit 2;
++---------------------+--------+--------------+
+| job                 | deptno | count(ename) |
++---------------------+--------+--------------+
+| Compliance officers |     30 |            1 |
+| ANALYST             |     50 |            1 |
++---------------------+--------+--------------+
+2 rows in set (0.00 sec)
+
+5)select ename,job,sal from emp where job in('clerk','Analyst') and sal not in(1000,3000,5000);
++---------+---------+------+
+| ename   | job     | sal  |
++---------+---------+------+
+| SMITH   | CLERK   |  800 |
+| AARAV   | CLERK   | 3350 |
+| THOMAS  | CLERK   | 1750 |
+| ADAMS   | CLERK   | 1100 |
+| JAMES   | CLERK   |  950 |
+| MILLER  | CLERK   | 1300 |
+| NATASHA | CLERK   | 1750 |
+| SUPRIYA | ANALYST | 1750 |
++---------+---------+------+
+
+
+6) select (select sum(total) from ord where status='shipped')-(select sum(total) from ord where status='cancelled') 'diff';
++----------+
+| diff     |
++----------+
+| 43049.60 |
++----------+
+
+7)select `user name`,substr(`user name`,1,1) from emp;
++--------------+-------------------------+
+| user name    | substr(`user name`,1,1) |
++--------------+-------------------------+
+| GITA         | G                       |
+| VRUSHALI     | V                       |
+| SHARMIN      | S                       |
+| BANDISH      | B                       |
+| TRITONE      | T                       |
+| AARAV        | A                       |
+| THOMAS       | T                       |
+| ALWAYS TESTE | A                       |
+| WARD         | W                       |
+| HONEYCOMB    | H                       |
+| LIFE RACER   | L                       |
+| BIG BEN      | B                       |
+| CLARK        | C                       |
+| WHITE SAND   | W                       |
+| KING         | K                       |
+| SAND STONE   | S                       |
+| SAND DUST    | S                       |
+| CRAZY ANYONE | C                       |
+| CRAZY LEADER | C                       |
+| CONBRIO      | C                       |
+| INTERVAL     | I                       |
+| GRASS        | G                       |
+| QUARTERNOTE  | Q                       |
+| AARUSH       | A                       |
+| QUARTERREST  | Q                       |
+| NATASHA      | N                       |
+| SANGITA      | S                       |
+| SUPRIYA      | S                       |
++--------------+-------------------------+
+
+
+8)select ename,isActive from emp where isActive=1;
++----------+----------+
+| ename    | isActive |
++----------+----------+
+| GITA     |        1 |
+| VRUSHALI |        1 |
+| SHARMIN  |        1 |
+| BANDISH  |        1 |
+| ALLEN    |        1 |
+| WARD     |        1 |
+| JONES    |        1 |
+| MARTIN   |        1 |
+| BLAKE    |        1 |
+| CLARK    |        1 |
+| SCOTT    |        1 |
+| KING     |        1 |
+| FRED     |        1 |
+| TURNER   |        1 |
+| ADAMS    |        1 |
+| JAMES    |        1 |
+| HOFFMAN  |        1 |
+| GRASS    |        1 |
+| ALEX     |        1 |
+| NATASHA  |        1 |
+| SANGITA  |        1 |
+| SUPRIYA  |        1 |
++----------+----------+
+
+10)select ename,sal from emp where sal>(select sal from emp where ename='martin');
++----------+------+
+| ename    | sal  |
++----------+------+
+| GITA     | 1750 |
+| VRUSHALI | 1750 |
+| SHARMIN  | 1750 |
+| BANDISH  | 1750 |
+| AARAV    | 3350 |
+| THOMAS   | 1750 |
+| ALLEN    | 1600 |
+| JONES    | 2975 |
+| BLAKE    | 2850 |
+| CLARK    | 2450 |
+| SCOTT    | 3000 |
+| KING     | 5000 |
+| FRED     | 5000 |
+| TURNER   | 1500 |
+| FORD     | 3000 |
+| HOFFMAN  | 4150 |
+| GRASS    | 2575 |
+| MILLER   | 1300 |
+| AARUSH   | 1350 |
+| NATASHA  | 1750 |
+| SANGITA  | 1750 |
+| SUPRIYA  | 1750 |
++----------+------+
+
+==============================================================================
+Section B:
+
+Q1]
+
+Solution:
+create table deptlog like dept;
+alter table deptlog add column currentdate date;
+alter table deptlog add column currenttime time;
+alter table deptlog add column who_user_added varchar(20);
+desc deptlog;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| DEPTNO         | int         | NO   | PRI | NULL    |       |
+| DNAME          | varchar(12) | YES  |     | NULL    |       |
+| LOC            | varchar(10) | YES  |     | NULL    |       |
+| PWD            | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON      | varchar(10) | YES  |     | NULL    |       |
+| currentdate    | date        | YES  |     | NULL    |       |
+| currenttime    | time        | YES  |     | NULL    |       |
+| who_user_added | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+
+select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+
+
+drop trigger if exists insertDEPT;
+delimiter $
+
+create trigger insertDEPT before insert on dept for each ROW
+begin 
+insert into deptLOG values(new.deptno,new.dname,new.loc,new.pwd,new.startedon,CURRENT_DATE,CURRENT_TIME,user();
+end $
+delimiter ;
+
+
+insert into dept values(60,'taining','mumbai','mumbai@8000','2020-05-21');
+
+select * from dept;
++--------+------------+----------+-------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD         | STARTEDON  |
++--------+------------+----------+-------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm      | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm   | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017  | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123     | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877    | 22/12/1989 |
+|     60 | taining    | mumbai   | mumbai@8000 | 2020-05-21 |
++--------+------------+----------+-------------+------------+
+
+ select * from deptlog;
+ +--------+---------+--------+-------------+------------+-------------+-------------+---------------------+------+
+| DEPTNO | DNAME   | LOC    | PWD         | STARTEDON  | currentdate | currenttime | who_user_added      |
++--------+---------+--------+-------------+------------+-------------+-------------+---------------------+------+
+|     60 | taining | mumbai | mumbai@8000 | 2020-05-21 | 2023-10-25  | 11:01:49    | dac8@192.168.10.126 |
++--------+---------+--------+-------------+------------+-------------+-------------+---------------------+------+
+
+
+insert into dept values(70,'technical','Latur','Latur@1000','2021-08-28');
+
+select * from dept;
++--------+------------+----------+-------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD         | STARTEDON  |
++--------+------------+----------+-------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm      | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm   | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017  | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123     | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877    | 22/12/1989 |
+|     60 | taining    | mumbai   | mumbai@8000 | 2020-05-21 |
+|     70 | technical  | Latur    | Latur@1000  | 2021-08-28 |
++--------+------------+----------+-------------+------------+
+
+select * from deptlog;
++--------+-----------+--------+-------------+------------+-------------+-------------+---------------------+------+
+| DEPTNO | DNAME     | LOC    | PWD         | STARTEDON  | currentdate | currenttime | who_user_added      |
++--------+-----------+--------+-------------+------------+-------------+-------------+---------------------+------+
+|     60 | taining   | mumbai | mumbai@8000 | 2020-05-21 | 2023-10-25  | 11:01:49    | dac8@192.168.10.126 |
+|     70 | technical | Latur  | Latur@1000  | 2021-08-28 | 2023-10-25  | 11:14:45    | dac8@192.168.10.126 |
++--------+-----------+--------+-------------+------------+-------------+-------------+---------------------+------+
+
+==============================================================================
+
+Q2]
+
+Solution:
+
+drop function if exists sumSalary;
+delimiter $
+
+create function sumSalary(_deptno int) returns int
+deterministic
+begin 
+DECLARE x int;
+
+DECLARE flag bool;
+select DISTINCT(true) into flag from emp where deptno=_deptno;
+if flag then
+select sum(sal) into x from emp where deptno=_deptno; 
+return x; 
+end if;
+end $
+delimiter ; 
+
+Output:
++---------------+
+| sumSalary(20) |
++---------------+
+|         19375 |
++---------------+
+
+==============================================================================
